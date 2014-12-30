@@ -150,8 +150,8 @@ module Garage::Representer
       (@options[:as] || @name).to_s
     end
 
-    def encode(object, responder, selector = nil)
-      value = object.send(@name)
+    def encode(representer, responder, selector = nil)
+      value = representer.send(@name)
       encode_value(value, responder, selector)
     end
 
@@ -188,8 +188,8 @@ module Garage::Representer
   end
 
   class Collection < Definition
-    def encode(object, responder, selector = nil)
-      value = object.send(@name)
+    def encode(representer, responder, selector = nil)
+      value = representer.send(@name)
       value.map do |item|
         encode_value(item, responder, selector)
       end
