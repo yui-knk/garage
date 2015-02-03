@@ -159,7 +159,7 @@ module Garage::Representer
       if !value.nil? && value.respond_to?(:represent!)
         responder.encode_to_hash(value, partial: true, selector: selector)
       elsif primitive?(value.class)
-        value
+        value.nil? ? "" : value
       else
         raise NonEncodableValue, "#{value.class} can not be encoded directly. Forgot to include Garage::Representer?"
       end
